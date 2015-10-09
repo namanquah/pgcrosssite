@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="jqm/jquery.mobile-1.4.0.min.css">
+<script src="jqm/jquery-1.11.0.min.js"></script>
+<script src="jqm/jquery.mobile-1.4.0.min.js"></script>
+<script src="phonegap.js"></script>
+<meta name="viewport" content ="width device-width, initial-scale=1 user-scalable=no">
+</head>
+<body>
+
+<div data-role="page" id="p1">
+	<div data-role="header">
+		<a href="#p1" data-role="button">Home</a>
+		<h1>Page title</h1>
+		<a href="#" data-role="button" data-rel="back" data-icon="back">Back</a>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p>First page Content Here</p>
+    	<a href="#p2" data-role="button">Go Explore</a>
+    	<a href="#p3" data-role="button">Dynamic List</a>
+    	<a href="#p4" data-role="button">Javascript</a>
+    	<a href="#p5" data-role="button">Ajax page load</a>
+    	<a href="#p6" data-role="button">PHP page load</a>
+    	<a href="http://mwc.rightclicksystems.org/externalpage.html" data-role="button">External HTML page load</a>
+    	<a href="phpExternalpage.php" data-role="button">External PHP page load</a>
+    	<a href="#p9" data-role="button">Submit form data by PHP action page</a>
+    	<a href="#p10" data-role="button">Submit form data by AJAX</a>
+  	</div>
+
+	<div data-role="footer">
+    	<h1>Footer Text Here</h1>
+    </div>
+
+</div>
+
+<!-- ============================== page p2 ===========================  -->
+
+<div data-role="page" id="p2">
+	<div data-role="header">
+		<a href="#p1" data-role="button">Home</a>
+		<h1>Explore page</h1>
+		<a href="#" data-role="button" data-rel="back" data-icon="back">Back</a>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p>Explore scanning</p>
+    	<a href="#" id="scanBtn" data-role="button">Scan something</a>
+  	</div>
+
+	<div data-role="footer">
+    	<h1>Footer Text Here</h1>
+    </div>
+
+</div>
+
+
+
+<!-- ============================== page p3 ===========================  -->
+
+<div data-role="page" id="p3">
+	<div data-role="header">
+		<a href="#" data-role="button">Home</a>
+		<h1>Dyanmic List</h1>
+		<a href="#" data-role="button" data-rel="back" data-icon="back">Back</a>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p>Pending....</p>
+    	<a href="#" id="loadListBnt" data-role="button">Load List</a>
+    	
+		<ol id=list1 data-role=listview data-inset=true>
+      <li data-role=list-divider>Static list</li>
+      <li >
+        <a href=#>Element 1.1</a>
+      </li>
+      <li data-icon=delete>
+        <a href=#>Element 1.2</a>
+      </li>
+      <li data-icon=delete>
+        <a href=#>Element 1.3</a>
+      </li>
+    	</ol>
+  	</div>
+
+	<div data-role="footer">
+    	<h1>Footer Text Here</h1>
+    </div>
+
+</div>
+
+
+
+<!-- ============================== page p4 ==javascript demo=========================  -->
+
+<div data-role="page" id="p4">
+	<div data-role="header">
+		<a href="#" data-role="button">Home</a>
+		<h1>Dyanmic List</h1>
+		<a href="#" data-role="button" data-rel="back" data-icon="back">Back</a>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p>Pending....</p>
+    	<a href="#" id="jsDemo" data-role="button">Do Javascript action</a>
+    	
+		<div id="someText">
+		</div>
+		
+  	</div>
+
+	<div data-role="footer">
+    	<h1>Footer Text Here</h1>
+    </div>
+
+</div>
+
+
+
+<!-- ============================== page p9 ==form submission demo=========================  -->
+
+<div data-role="page" id="p9">
+	<div data-role="header">
+		<a href="#" data-role="button">Home</a>
+		<h1>Form Demo</h1>
+		<a href="#" data-role="button" data-rel="back" data-icon="back">Back</a>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p>Form Demo....
+    	</p>
+
+			<form method="post" action="processform.php">
+				<div data-role="fieldcontain">
+			  		<label for="firstname">First name:</label>
+			  		<input type="text" name="firstname" id="firstname">
+					<label for="surname">Surname:</label>
+			  		<input type="text" name="surname" id="surname">
+					<input type="submit" value="Submit">
+				</div>
+			</form>
+    	
+
+			
+  	</div>
+
+	<div data-role="footer">
+    	<h1>Footer Text Here</h1>
+    </div>
+
+</div>
+
+
+
+<!-- ============================== page p10 ==form submission with AJAX=========================  -->
+
+<div data-role="page" id="p10">
+	<div data-role="header">
+		<a href="#" data-role="button">Home</a>
+		<h1>Form Demo...AJAX version</h1>
+		<a href="#" data-role="button" data-rel="back" data-icon="back">Back</a>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p>Form Demo....AJAX version
+    	</p>
+			<form>
+				<div data-role="fieldcontain">
+			  		<label for="firstname2">First name:</label>
+			  		<input type="text" name="firstname" id="firstname2">
+					<label for="surname2">Surname:</label>
+			  		<input type="text" name="surname" id="surname2">
+					<input type="submit" value="Submit" id="ajaxsubmitbtn">
+				</div>
+			</form>
+    	
+		<div id="responsediv">  </div>
+  	</div>
+
+	<div data-role="footer">
+    	<h1>Footer Text Here</h1>
+    </div>
+
+</div>
+
+
+
+</body>
+<script>
+$("#ajaxsubmitbtn").click(function(){
+	alert("submit was clicked");
+	//return false; //return false if i do not want to navigate away
+	$.post("http://mwc.rightclicksystems.org/processform2.php",
+		{
+			surname2: $("#surname2").val(),
+			firstname2: $("#firstname2").val()
+		},
+		function(data, status)
+		{
+			$("#responsediv").html("status"+status+"  "+data);
+		}
+		);
+		
+	/*
+	$.ajax(
+	{
+	url: "processform.php",
+	complete: function(xhr, result)
+		{ 
+		if (result!="success") return;
+		var response= xhr.responseText;
+		$("#responsediv").html(response);
+		}
+	});
+	*/
+	return false;//do not navigate away
+});
+
+
+</script>
+</html>
+
+
