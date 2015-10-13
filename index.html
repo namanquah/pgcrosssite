@@ -188,7 +188,32 @@
 
 </body>
 <script>
+
+
 $("#ajaxsubmitbtn").click(function(){
+//     alert("clicked-try2");
+
+
+$.ajax({
+        url : "http://mwc.rightclicksystems.org/processform3.php?firstname2="+$("#firstname2").val(),//"http://mwc.rightclicksystems.org/processform3.php",
+        dataType:"jsonp",
+        //jsonpCallback: 'mycallback',    //either this pr jsonP works
+	    contentType: "application/json",
+        jsonp:"mycallback",
+        success:function(data)
+        {
+			var response= data.returnData;
+			$("#responsediv").html(response);
+            //alert("return data"+data.returnData);
+        }    });
+
+
+
+/*
+
+	$.support.cors=true;
+	$.mobile.allowCrossDomainPages=true;
+	
 	alert("submit was clicked");
 	//return false; //return false if i do not want to navigate away
 	$.post("http://mwc.rightclicksystems.org/processform2.php",
@@ -199,9 +224,10 @@ $("#ajaxsubmitbtn").click(function(){
 		function(data, status)
 		{
 			$("#responsediv").html("status"+status+"  "+data);
+				alert("done");
 		}
 		);
-		
+	*/	
 	/*
 	$.ajax(
 	{

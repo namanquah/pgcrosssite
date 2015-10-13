@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="jqm/jquery-1.11.0.min.js"></script>
+
+</head>
+<body>
+
+
+		<h1>Form Demo...Normal AJAX version, not jqm</h1>
+		<a href="#" data-role="button" data-rel="back" data-icon="back">Back</a>
+	</div>
+
+	<div role="main" class="ui-content">
+    	<p>Form Demo....AJAX version
+    	</p>
+			<form action="" name="testform">
+				<div data-role="fieldcontain">
+			  		<label for="firstname2">First name:</label>
+			  		<input type="text" name="firstname" id="firstname2">
+					<label for="surname2">Surname:</label>
+			  		<input type="text" name="surname" id="surname2">
+					<input type="button" value="click2" id="ajaxsubmitbtn">
+				</div>
+			</form>
+    	
+		<div id="responsediv">  </div>
+  	</div>
+
+	<div data-role="footer">
+    	<h1>Footer Text Here</h1>
+    </div>
+
+</div>
+
+
+
+</body>
+<script>
+//============Post does not work as below. Examine. GET in next snippet works=============
+//explore alternative formats for posting POST data.
+
+/*
+$(function() {
+    $("#ajaxsubmitbtn").click(function() {
+      alert("clicked-try2");
+
+ var fname = $("input#firstname2").val();
+      var sname = $("input#surname2").val();
+      
+      var dataString = 'firstname2='+ fname + '&surname2=' + sname;
+      
+$.ajax({
+        url : "processform3.php?firstname2",//"http://mwc.rightclicksystems.org/processform3.php",
+        method: "POST",
+        data: dataString,
+        dataType:"jsonp",
+        //jsonpCallback: 'mycallback',    //either this pr jsonP works
+	    contentType: "application/json",
+        jsonp:"mycallback",
+        success:function(data)
+        {
+        	alert("done");
+        	
+            alert("Name:"+data.name+"nage:"+data.age+"nlocation:"+data.location);
+            alert("return data"+data.returnData);
+        }    });
+
+
+
+}); //click fxn
+});//fxn 
+
+*/
+
+//============ff works. Xdomain test pending expanded set of vars works ok too=============
+
+
+$(function() {
+    $("#ajaxsubmitbtn").click(function() {
+      alert("clicked-try2");
+
+
+$.ajax({
+        url : "processform3.php?firstname2="+$("#firstname2").val(),//"http://mwc.rightclicksystems.org/processform3.php",
+        dataType:"jsonp",
+        //jsonpCallback: 'mycallback',    //either this pr jsonP works
+	    contentType: "application/json",
+        jsonp:"mycallback",
+        success:function(data)
+        {
+        	alert("done");
+        	
+            alert("Name:"+data.name+"nage:"+data.age+"nlocation:"+data.location);
+            alert("return data"+data.returnData);
+        }    });
+
+
+
+}); //click fxn
+});//fxn 
+
+
+//==========this works for cross site==========
+/*
+$(function() {
+    $("#ajaxsubmitbtn").click(function() {
+      alert("clicked-x");
+
+
+$.ajax({
+        url : "http://mwc.rightclicksystems.org/processform3.php",
+        dataType:"jsonp",
+        jsonp:"mycallback",
+        success:function(data)
+        {
+            alert("Name:"+data.name+"nage:"+data.age+"nlocation:"+data.location);
+        }
+    });
+
+
+
+}); //click fxn
+});//fxn 
+*/
+//==========================using jsonp==>JSONP stands for “JSON with Padding========
+/*
+//not tested
+//http://www.sitepoint.com/jsonp-examples/
+//http://hayageek.com/cross-domain-ajax-request-jquery/		<---good
+//http://api.jquery.com/jQuery.ajax/#jqXHR   		<--ref has jsonp listed.
+$(function() {
+    $("#ajaxsubmitbtn").click(function() {
+      alert("clicked");
+	  var fname = $("input#firstname2").val();
+      var sname = $("input#surname2").val();
+      
+      var dataString = 'firstname2='+ fname + '&surname2=' + sname;
+var jqxhr = $.ajax( 
+{
+
+    method: "POST",
+    dataType:"jsonp",
+//    url: "http://mwc.rightclicksystems.org/processform2.php",
+	url: "processform2.php",
+    data: dataString
+})
+
+  .done(function(msg) {
+    alert( "success "+msg );
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    alert( "complete" );
+  });
+
+}); //click fxn
+});//fxn 
+
+*/
+
+//======================works ok, for local
+/*
+ $(function() {
+    $("#ajaxsubmitbtn").click(function() {
+      alert("clicked");
+	  var fname = $("input#firstname2").val();
+      var sname = $("input#surname2").val();
+      
+      var dataString = 'firstname2='+ fname + '&surname2=' + sname;
+var jqxhr = $.ajax( 
+{
+//	  crossDomain: "true",
+    method: "POST",
+    dataType:"json",
+//    url: "http://mwc.rightclicksystems.org/processform2.php",
+	url: "processform2.php",
+    data: dataString
+})
+
+  .done(function(msg) {
+    alert( "success "+msg );
+  })
+  .fail(function() {
+    alert( "error" );
+  })
+  .always(function() {
+    alert( "complete" );
+  });
+
+}); //click fxn
+});//fxn 
+
+*/
+//=============================
+/*
+//works for local
+ $(function() {
+    $("#ajaxsubmitbtn").click(function() {
+      alert("clicked");
+      
+      var fname = $("input#firstname2").val();
+      var sname = $("input#surname2").val();
+      
+      var dataString = 'firstname2='+ fname + '&surname2=' + sname;
+  //alert (dataString);return false;
+  $.ajax({
+	  crossDomain: "true",
+    type: "POST",
+    url: "http://mwc.rightclicksystems.org/processform2.php",
+    data: dataString,
+    success: function(data, textStatus, jqXHR) {
+      //$('#contact_form').html("<div id='message'></div>");
+      $('#responsediv').html("<h2>Info passed on!</h2>")
+      .append("<p>We will be in touch soon.</p>")
+      .hide()
+      .fadeIn(1500, function() {
+        $('#responsediv').append("OK..."+data+"  "+textStatus);
+      });
+    },
+    error: function(jqXHR, textStatus, errorThrown) 
+        {
+        	
+            //if fails 
+            alert("failed");
+            $('#responsediv').html(jqXHR.responseText+"--"+textStatus+" --  "+errorThrown+"."+jqXHR.responseText)
+        }
+  });
+  return false;
+      
+    });
+  });
+*/
+/*
+ $(document).ready(function() {
+$("#ajaxsubmitbtn").click(function(){
+//	$.support.cors=true;
+//	$.mobile.allowCrossDomainPages=true;
+	
+	alert("submit was clicked");
+	//return false; //return false if i do not want to navigate away
+
+*/	
+/*	
+	$.post("http://mwc.rightclicksystems.org/processform2.php",
+		{
+			surname2: $("#surname2").val(),
+			firstname2: $("#firstname2").val()
+		},
+		function(data, status)
+		{
+			alert("Data: " + data + "\nStatus: " + status);
+			$("#responsediv").html("status"+status+"  "+data);
+				alert("done");
+		}
+		);
+		*/
+	/*
+	$.ajax(
+	{
+	url: "processform.php",
+	complete: function(xhr, result)
+		{ 
+		if (result!="success") return;
+		var response= xhr.responseText;
+		$("#responsediv").html(response);
+		}
+	});
+	*/
+/*
+	return false;//do not navigate away
+});
+
+
+}
+*/
+</script>
+</html>
+
+
