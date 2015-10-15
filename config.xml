@@ -16,9 +16,17 @@
     <author  email="namanquah@gmail.com">
 	NAMANQUAH
     </author>
+    
+    <gap:plugin name="com.jp.whitelistplugin" version="1.1.2" />
+    
+    <!-- intent whitelist - what can be open to the subdomain  -->
+	<access origin="http://mwc.rightclicksystems.org" />
+	<!-- navigation  -->
+	<allow-navigation href="http://mwc.rightclicksystems.org" />
+	
+	<!-- Network Request Whitelist  -->
+	<access origin="http://mwc.rightclicksystems.org" />
+	
+	
 
-    <!--
-      This allows your app to load assets from all *.rightclicksystems.org domains
-    -->
-    <access origin="http://mwc.righclicksystems.org" subdomains="true" />
-</widget>
+\</widget>
