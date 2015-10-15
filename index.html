@@ -192,7 +192,8 @@
 
 $("#ajaxsubmitbtn").click(function(){
 //     alert("clicked-try2");
-
+$.support.cors=true;
+$.mobile.allowCrossDomainPages = true;
 
 $.ajax({
         url : "http://mwc.rightclicksystems.org/processform3.php?firstname2="+$("#firstname2").val(),//"http://mwc.rightclicksystems.org/processform3.php",
@@ -202,6 +203,7 @@ $.ajax({
         jsonp:"mycallback",
         success:function(data)
         {
+        	alert("success");
 			var response= data.returnData;
 			$("#responsediv").html(response);
             //alert("return data"+data.returnData);
