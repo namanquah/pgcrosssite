@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "com.phonegap.example"
+    versionCode = "10" 
+    version     = "1.0.0" >
+
+    <!-- versionCode is optional and Android only -->
+
+    <name>PhoneGap Cross Domain</name>
+
+    <description>
+	Cross domain- finally
+    </description>
+
+    <author  email="namanquah@gmail.com">
+	NAMANQUAH
+    </author>
+
+    <!--
+      This allows your app to load assets from all *.rightclicksystems.org domains
+    -->
+    <access origin="http://mwc.righclicksystems.org" subdomains="true" />
+</widget>
