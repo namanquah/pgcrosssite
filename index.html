@@ -6,8 +6,7 @@
 <script src="jqm/jquery.mobile-1.4.0.min.js"></script>
 <script src="phonegap.js"></script>
 <meta name="viewport" content ="width device-width, initial-scale=1 user-scalable=no">
-<!-- Allow requests to xyz.com -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self' http://mwc.rightclicksystems.org">
+
 </head>
 <body>
 
@@ -173,7 +172,7 @@
 			  		<input type="text" name="firstname" id="firstname2">
 					<label for="surname2">Surname:</label>
 			  		<input type="text" name="surname" id="surname2">
-					<input type="submit" value="Submit" id="ajaxsubmitbtn">
+					<input type="button" value="Click Me2" id="ajaxsubmitbtn">
 				</div>
 			</form>
     	
@@ -191,62 +190,45 @@
 </body>
 <script>
 
+//=============================
 
-$("#ajaxsubmitbtn").click(function(){
-     alert("clicked");
-$.support.cors=true;
-$.mobile.allowCrossDomainPages = true;
-//<gap:plugin name="cordova-plugin-whitelist" source="npm" />
-
-$.ajax({
-        url : "http://mwc.rightclicksystems.org/processform3.php?firstname2="+$("#firstname2").val(),//"http://mwc.rightclicksystems.org/processform3.php",
-        dataType:"jsonp",
-        //jsonpCallback: 'mycallback',    //either this pr jsonP works
-	    contentType: "application/json",
-        jsonp:"mycallback",
-        success:function(data)
+//works for local
+ $(function() {
+    $("#ajaxsubmitbtn").click(function() {
+      alert("clicked");
+      
+      var fname = $("input#firstname2").val();
+      var sname = $("input#surname2").val();
+      
+      var dataString = 'firstname2='+ fname + '&surname2=' + sname;
+  //alert (dataString);return false;
+  $.ajax({
+	  crossDomain: "true",
+    type: "POST",
+    url: "http://mwc.rightclicksystems.org/processform2.php",
+    data: dataString,
+    success: function(data, textStatus, jqXHR) {
+      //$('#contact_form').html("<div id='message'></div>");
+      $('#responsediv').html("<h2>Info passed on!</h2>")
+      .append("<p>We will be in touch soon.</p>")
+      .hide()
+      .fadeIn(1500, function() {
+        $('#responsediv').append("OK..."+data+"  "+textStatus);
+      });
+    },
+    error: function(jqXHR, textStatus, errorThrown) 
         {
-        	alert("success");
-			var response= data.returnData;
-			$("#responsediv").html(response);
-            //alert("return data"+data.returnData);
-        }    });
+        	
+            //if fails 
+            alert("failed");
+            $('#responsediv').html(jqXHR.responseText+"--"+textStatus+" --  "+errorThrown+"."+jqXHR.responseText)
+        }
+  });
+  return false;
+      
+    });
+  });
 
-
-
-/*
-
-	$.support.cors=true;
-	$.mobile.allowCrossDomainPages=true;
-	
-	alert("submit was clicked");
-	//return false; //return false if i do not want to navigate away
-	$.post("http://mwc.rightclicksystems.org/processform2.php",
-		{
-			surname2: $("#surname2").val(),
-			firstname2: $("#firstname2").val()
-		},
-		function(data, status)
-		{
-			$("#responsediv").html("status"+status+"  "+data);
-				alert("done");
-		}
-		);
-	*/	
-	/*
-	$.ajax(
-	{
-	url: "processform.php",
-	complete: function(xhr, result)
-		{ 
-		if (result!="success") return;
-		var response= xhr.responseText;
-		$("#responsediv").html(response);
-		}
-	});
-	*/
-	return false;//do not navigate away
-});
 
 
 </script>
