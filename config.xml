@@ -25,7 +25,7 @@
 	<allow-navigation href="http://mwc.rightclicksystems.org" />
 	
 	<!-- Network Request Whitelist  -->
-	<access origin="http://mwc.rightclicksystems.org" />
+	<access origin="*" />
 	
 	
 
