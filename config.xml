@@ -17,16 +17,12 @@
 	NAMANQUAH
     </author>
     
-    <gap:plugin name="com.jp.whitelistplugin" version="1.1.2" />
+	<gap:plugin name="cordova-plugin-whitelist" source="npm" />
     
-    <!-- intent whitelist - what can be open to the subdomain  -->
-	<access origin="http://mwc.rightclicksystems.org" />
-	<!-- navigation  -->
-	<allow-navigation href="http://mwc.rightclicksystems.org" />
-	
-	<!-- Network Request Whitelist  -->
-	<access origin="*" />
-	
+    <allow-navigation href="*" />
+    <allow-intent href="*" />
+    <access origin="*" />
+    
 	
 
-\</widget>
+</widget>
